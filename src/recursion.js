@@ -39,7 +39,7 @@ var arraySum = function(array) {
   if (array.length === 0){
     return 0;
   }
-  if(array.length === 1){
+if (Array.isArray(array[0]) === false && array.length === 1){
     return array[0];
   }
     var flatCopy = array.flat(Infinity);
@@ -52,12 +52,32 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n < 0){
+    n = n * -1;
+  }
+  if(n === 0){
+    return true
+  }
+  if(n === 1){
+    return false;
+  }
+   return isEven(n - 2);
+
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if(n < 0){
+    return (n+1) + sumBelow( n + 1) ;
+  }
+  if( n === 0){
+    return 0;
+  }else {
+    return (n-1) + sumBelow( n - 1) ;
+  }
+
 };
 
 // 6. Get the integers within a range (x, y).
@@ -160,6 +180,17 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+
+  var counter = 0;
+
+  if(typeof obj === 'object'){
+    for ( var item in obj){
+      if(item === key){
+        counter ++;
+        countKeysInObj(obj[item], key);
+      }
+    }
+  }
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
