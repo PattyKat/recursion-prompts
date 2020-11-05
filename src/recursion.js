@@ -187,10 +187,12 @@ var countKeysInObj = function(obj, key) {
     for ( var item in obj){
       if(item === key){
         counter ++;
-        countKeysInObj(obj[item], key);
       }
+      counter += countKeysInObj(obj[item], key);
     }
   }
+  return counter;
+
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
