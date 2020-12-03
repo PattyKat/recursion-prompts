@@ -144,6 +144,12 @@ var compareStr = function(str1, str2) {
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
 var createArray = function(str) {
+
+  var resultArray = [];
+
+
+
+  return resultArray;
 };
 
 // 17. Reverse the order of an array
@@ -173,6 +179,17 @@ var countOccurrence = function(array, value) {
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+
+  var resultArr = [];
+  //base case
+
+  if (Array.isArray(array)) {
+    for (var i = 0; i < array.length; i++) {
+      resultArr.push(callback(array[i]));
+    }
+    resultArr.concat(rMap(array[i], callback));
+  }
+  return resultArr
 };
 
 // 22. Write a function that counts the number of times a key occurs in an object.
@@ -200,6 +217,20 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+
+  var count = 0;
+
+  if( typeof obj === 'object'){
+    for (var key in obj) {
+      if(obj[key] === value){
+        count ++;
+      }
+      count += countValuesInObj(obj[key], value);
+
+    }
+  }
+
+  return count
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
